@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "This project should store a list of tasks. it should have a CLI to add and list the tasks. The tasks should be stored locally in a file. Make sure that THE CLI component is logically separate from the name storage component"
 
+## Clarifications
+
+### Session 2025-11-19
+
+- Q: CLI Invocation Pattern: How should users invoke the task management CLI? → A: `tasks add "description"` and `tasks list` (short program name + command)
+- Q: Storage File Format: What structured format should be used for storing tasks? → A: JSON format (standard, widely supported, excellent debugging)
+- Q: Storage File Location: Where should the tasks file be stored by default? → A: User's home directory (e.g., `~/.tasks.json` or `~/tasks.json`)
+- Q: Task ID Generation Strategy: How should unique task identifiers be generated? → A: Sequential integers starting from 1 (simple, user-friendly)
+- Q: Alphabetical Sorting Case Sensitivity: How should alphabetical sorting handle letter case? → A: Case-insensitive (treats A=a, B=b: A, a, B, b, Z, z)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Add Tasks (Priority: P1)
@@ -17,9 +27,9 @@ Users need to quickly capture tasks as they think of them without leaving the co
 
 **Acceptance Scenarios**:
 
-1. **Given** the CLI is installed, **When** user runs `add "Buy groceries"`, **Then** the task is stored with a unique ID and timestamp
-2. **Given** the CLI is installed, **When** user runs `add "Meeting at 3pm"`, **Then** the task is added to the existing task list
-3. **Given** the CLI is installed, **When** user runs `add ""` (empty task), **Then** system displays error message "Task description cannot be empty"
+1. **Given** the CLI is installed, **When** user runs `tasks add "Buy groceries"`, **Then** the task is stored with a unique ID and timestamp
+2. **Given** the CLI is installed, **When** user runs `tasks add "Meeting at 3pm"`, **Then** the task is added to the existing task list
+3. **Given** the CLI is installed, **When** user runs `tasks add ""` (empty task), **Then** system displays error message "Task description cannot be empty"
 
 ---
 
@@ -33,9 +43,9 @@ Users need to view all their stored tasks to review what needs to be done.
 
 **Acceptance Scenarios**:
 
-1. **Given** three tasks exist in storage, **When** user runs `list`, **Then** all three tasks are displayed with their IDs and descriptions
-2. **Given** no tasks exist in storage, **When** user runs `list`, **Then** system displays "No tasks found"
-3. **Given** tasks exist with different descriptions, **When** user runs `list`, **Then** tasks are displayed in alphabetical order by description
+1. **Given** three tasks exist in storage, **When** user runs `tasks list`, **Then** all three tasks are displayed with their IDs and descriptions
+2. **Given** no tasks exist in storage, **When** user runs `tasks list`, **Then** system displays "No tasks found"
+3. **Given** tasks exist with different descriptions, **When** user runs `tasks list`, **Then** tasks are displayed in alphabetical order by description
 
 ---
 
@@ -51,23 +61,23 @@ Users need to view all their stored tasks to review what needs to be done.
 
 ### Functional Requirements
 
-- **FR-001**: System MUST provide a command-line interface for user interaction
-- **FR-002**: System MUST support an "add" command that accepts task descriptions as arguments
-- **FR-003**: System MUST support a "list" command that displays all stored tasks
+- **FR-001**: System MUST provide a command-line interface accessible via the `tasks` command
+- **FR-002**: System MUST support an "add" subcommand that accepts task descriptions as argumentsnts
+- **FR-003**: System MUST support a "list" subcommand that displays all stored tasks
 - **FR-004**: System MUST store tasks persistently in a local file
-- **FR-005**: System MUST assign a unique identifier to each task
+- **FR-005**: System MUST assign a sequential integer identifier to each task starting from 1
 - **FR-006**: System MUST timestamp each task when created
 - **FR-007**: System MUST maintain logical separation between CLI interface and storage components
 - **FR-008**: System MUST validate that task descriptions are not empty
 - **FR-009**: System MUST create storage file automatically if it doesn't exist
 - **FR-010**: System MUST handle errors gracefully with user-friendly messages
-- **FR-011**: System MUST display tasks in alphabetical order by description
+- **FR-011**: System MUST display tasks in alphabetical order by description (case-insensitive)
 - **FR-012**: System MUST preserve task data across application restarts
 
 ### Key Entities *(include if feature involves data)*
 
 - **Task**: Represents a single task item
-  - Unique identifier (for future operations like delete/update)
+  - Unique identifier (sequential integer starting from 1, for easy reference in future operations)
   - Description (text content of the task)
   - Timestamp (when the task was created)
   - Status (assumed "pending" for this MVP, extensible for future states)
@@ -90,8 +100,8 @@ Users need to view all their stored tasks to review what needs to be done.
 
 ## Assumptions
 
-- **A-001**: Storage format will use a structured text format (JSON or similar) for easy debugging and human readability
-- **A-002**: Storage file location will default to user's home directory or current working directory
+- **A-001**: Storage format will use JSON for easy debugging, human readability, and wide tool support
+- **A-002**: Storage file will be located in user's home directory (e.g., `~/.tasks.json`) to prevent clutter in working directories
 - **A-003**: Single user usage - no concurrent access handling needed for MVP
 - **A-004**: Tasks are text-only (no attachments, rich formatting, or metadata beyond basics)
 - **A-005**: Command-line arguments follow standard POSIX conventions
