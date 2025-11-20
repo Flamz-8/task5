@@ -28,16 +28,16 @@ Single project structure (from plan.md):
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Initialize uv project with Python 3.14+ in repository root using `uv init --app tasks-cli`
-- [ ] T002 Create `.python-version` file with `3.14` specification
-- [ ] T003 Configure `pyproject.toml` with project metadata, dependencies (none for MVP), and console script entry point `tasks = "tasks_cli.__main__:main"`
-- [ ] T004 Add development dependencies: `uv add --dev pytest pytest-cov ruff mypy black`
-- [ ] T005 [P] Create directory structure: `src/tasks_cli/`, `src/tasks_cli/models/`, `src/tasks_cli/storage/`, `src/tasks_cli/commands/`
-- [ ] T006 [P] Create test directory structure: `tests/unit/`, `tests/integration/`, `tests/contract/`
-- [ ] T007 [P] Configure ruff in `pyproject.toml` with linting rules per constitution code quality standards
-- [ ] T008 [P] Configure mypy in `pyproject.toml` with strict type checking enabled
-- [ ] T009 [P] Configure pytest in `pyproject.toml` with coverage settings (minimum 80% target)
-- [ ] T010 [P] Create `.gitignore` with Python, uv, IDE, and OS-specific exclusions
+- [X] T001 Initialize uv project with Python 3.14+ in repository root using `uv init --app tasks-cli`
+- [X] T002 Create `.python-version` file with `3.14` specification
+- [X] T003 Configure `pyproject.toml` with project metadata, dependencies (none for MVP), and console script entry point `tasks = "tasks_cli.__main__:main"`
+- [X] T004 Add development dependencies: `uv add --dev pytest pytest-cov ruff mypy black`
+- [X] T005 [P] Create directory structure: `src/tasks_cli/`, `src/tasks_cli/models/`, `src/tasks_cli/storage/`, `src/tasks_cli/commands/`
+- [X] T006 [P] Create test directory structure: `tests/unit/`, `tests/integration/`, `tests/contract/`
+- [X] T007 [P] Configure ruff in `pyproject.toml` with linting rules per constitution code quality standards
+- [X] T008 [P] Configure mypy in `pyproject.toml` with strict type checking enabled
+- [X] T009 [P] Configure pytest in `pyproject.toml` with coverage settings (minimum 80% target)
+- [X] T010 [P] Create `.gitignore` with Python, uv, IDE, and OS-specific exclusions
 
 **Checkpoint**: Project structure ready, development tools configured
 
@@ -49,15 +49,15 @@ Single project structure (from plan.md):
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T011 [P] Create `src/tasks_cli/__init__.py` with package version metadata
-- [ ] T012 [P] Create Task model dataclass in `src/tasks_cli/models/task.py` with id, description, timestamp, status attributes and validation in `__post_init__`
-- [ ] T013 [P] Create `to_dict()` and `from_dict()` methods in Task model for JSON serialization
-- [ ] T014 Create TaskStorage class skeleton in `src/tasks_cli/storage/task_storage.py` with `__init__`, `add_task`, `get_all_tasks` method signatures
-- [ ] T015 Implement `_read_tasks()` private method in TaskStorage to read and parse JSON file with corruption handling
-- [ ] T016 Implement `_write_tasks()` private method in TaskStorage with atomic write pattern (temp file + rename)
-- [ ] T017 Implement `_get_next_id()` private method in TaskStorage to calculate sequential IDs
-- [ ] T018 [P] Create `src/tasks_cli/__main__.py` with main() entry point skeleton and argparse setup
-- [ ] T019 [P] Create `src/tasks_cli/cli.py` with ArgumentParser configuration for `tasks add` and `tasks list` subcommands
+- [X] T011 [P] Create `src/tasks_cli/__init__.py` with package version metadata
+- [X] T012 [P] Create Task model dataclass in `src/tasks_cli/models/task.py` with id, description, timestamp, status attributes and validation in `__post_init__`
+- [X] T013 [P] Create `to_dict()` and `from_dict()` methods in Task model for JSON serialization
+- [X] T014 Create TaskStorage class skeleton in `src/tasks_cli/storage/task_storage.py` with `__init__`, `add_task`, `get_all_tasks` method signatures
+- [X] T015 Implement `_read_tasks()` private method in TaskStorage to read and parse JSON file with corruption handling
+- [X] T016 Implement `_write_tasks()` private method in TaskStorage with atomic write pattern (temp file + rename)
+- [X] T017 Implement `_get_next_id()` private method in TaskStorage to calculate sequential IDs
+- [X] T018 [P] Create `src/tasks_cli/__main__.py` with main() entry point skeleton and argparse setup
+- [X] T019 [P] Create `src/tasks_cli/cli.py` with ArgumentParser configuration for `tasks add` and `tasks list` subcommands
 
 **Checkpoint**: Foundation ready - Task model complete, TaskStorage interface ready, CLI framework initialized
 
@@ -80,13 +80,13 @@ Single project structure (from plan.md):
 
 ### Implementation for User Story 1
 
-- [ ] T024 [US1] Implement TaskStorage.add_task() method in `src/tasks_cli/storage/task_storage.py`: validate description, generate ID, create timestamp, create Task object, append to storage, write atomically
-- [ ] T025 [US1] Create add command handler in `src/tasks_cli/commands/add.py` with function `add_command(description: str) -> int` that instantiates TaskStorage and calls add_task()
-- [ ] T026 [US1] Add error handling in `add_command()` for ValueError (empty/long description) and IOError (write failures) with user-friendly messages
-- [ ] T027 [US1] Wire add command to CLI in `src/tasks_cli/__main__.py` main() function to call add_command() when args.command == "add"
-- [ ] T028 [US1] Add success feedback message in `add_command()`: "Task added: [ID] description"
-- [ ] T029 [US1] Handle edge case: create ~/.tasks.json automatically if it doesn't exist (implement in _write_tasks)
-- [ ] T030 [US1] Handle edge case: validate description is non-empty after stripping whitespace
+- [X] T024 [US1] Implement TaskStorage.add_task() method in `src/tasks_cli/storage/task_storage.py`: validate description, generate ID, create timestamp, create Task object, append to storage, write atomically
+- [X] T025 [US1] Create add command handler in `src/tasks_cli/commands/add.py` with function `add_command(description: str) -> int` that instantiates TaskStorage and calls add_task()
+- [X] T026 [US1] Add error handling in `add_command()` for ValueError (empty/long description) and IOError (write failures) with user-friendly messages
+- [X] T027 [US1] Wire add command to CLI in `src/tasks_cli/__main__.py` main() function to call add_command() when args.command == "add"
+- [X] T028 [US1] Add success feedback message in `add_command()`: "Task added: [ID] description"
+- [X] T029 [US1] Handle edge case: create ~/.tasks.json automatically if it doesn't exist (implement in _write_tasks)
+- [X] T030 [US1] Handle edge case: validate description is non-empty after stripping whitespace
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - users can add tasks and they persist correctly
 
@@ -106,14 +106,14 @@ Single project structure (from plan.md):
 
 ### Implementation for User Story 2
 
-- [ ] T034 [US2] Implement TaskStorage.get_all_tasks() method in `src/tasks_cli/storage/task_storage.py`: read from file, parse JSON, convert to Task objects, handle missing file gracefully (return empty list)
-- [ ] T035 [US2] Create list command handler in `src/tasks_cli/commands/list.py` with function `list_command() -> int` that instantiates TaskStorage and calls get_all_tasks()
-- [ ] T036 [US2] Implement case-insensitive alphabetical sorting in `list_command()`: sort tasks by `task.description.lower()`
-- [ ] T037 [US2] Format task output in `list_command()`: "[ID] description" for each task, one per line
-- [ ] T038 [US2] Handle empty task list in `list_command()`: display "No tasks found" message
-- [ ] T039 [US2] Wire list command to CLI in `src/tasks_cli/__main__.py` main() function to call list_command() when args.command == "list"
-- [ ] T040 [US2] Add error handling in `list_command()` for IOError (read failures) and ValueError (corrupted JSON) with user-friendly messages
-- [ ] T041 [US2] Handle edge case: corrupted JSON file - backup to ~/.tasks.json.backup and notify user
+- [X] T034 [US2] Implement TaskStorage.get_all_tasks() method in `src/tasks_cli/storage/task_storage.py`: read from file, parse JSON, convert to Task objects, handle missing file gracefully (return empty list)
+- [X] T035 [US2] Create list command handler in `src/tasks_cli/commands/list.py` with function `list_command() -> int` that instantiates TaskStorage and calls get_all_tasks()
+- [X] T036 [US2] Implement case-insensitive alphabetical sorting in `list_command()`: sort tasks by `task.description.lower()`
+- [X] T037 [US2] Format task output in `list_command()`: "[ID] description" for each task, one per line
+- [X] T038 [US2] Handle empty task list in `list_command()`: display "No tasks found" message
+- [X] T039 [US2] Wire list command to CLI in `src/tasks_cli/__main__.py` main() function to call list_command() when args.command == "list"
+- [X] T040 [US2] Add error handling in `list_command()` for IOError (read failures) and ValueError (corrupted JSON) with user-friendly messages
+- [X] T041 [US2] Handle edge case: corrupted JSON file - backup to ~/.tasks.json.backup and notify user
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently - complete task management workflow functional
 
@@ -123,16 +123,16 @@ Single project structure (from plan.md):
 
 **Purpose**: Improvements that affect multiple user stories and finalization
 
-- [ ] T042 [P] Create `README.md` at repository root with installation instructions from quickstart.md (uv installation, project setup)
-- [ ] T043 [P] Add usage examples to `README.md`: basic add/list commands, real-world scenarios from quickstart.md
-- [ ] T044 [P] Add troubleshooting section to `README.md`: file permissions, corrupted JSON, disk full errors
-- [ ] T045 [P] Add docstrings to all public functions and classes in `src/tasks_cli/` modules (per constitution documentation requirements)
-- [ ] T046 Run `ruff check .` and fix all linting errors across codebase
-- [ ] T047 Run `mypy src/` and fix all type checking errors
-- [ ] T048 Run `black .` to format all Python files consistently
-- [ ] T049 Run `uv run pytest --cov=src/tasks_cli --cov-report=term-missing` and verify ≥80% coverage (or implement additional tests if below threshold)
-- [ ] T050 Manual testing: Follow quickstart.md scenarios end-to-end on Windows, macOS, or Linux
-- [ ] T051 Verify all constitution principles: code quality (linting passing), testing (coverage ≥80%), UX (error messages clear), performance (<100ms add, <200ms list), documentation (README complete)
+- [X] T042 [P] Create `README.md` at repository root with installation instructions from quickstart.md (uv installation, project setup)
+- [X] T043 [P] Add usage examples to `README.md`: basic add/list commands, real-world scenarios from quickstart.md
+- [X] T044 [P] Add troubleshooting section to `README.md`: file permissions, corrupted JSON, disk full errors
+- [X] T045 [P] Add docstrings to all public functions and classes in `src/tasks_cli/` modules (per constitution documentation requirements)
+- [X] T046 Run `ruff check .` and fix all linting errors across codebase
+- [X] T047 Run `mypy src/` and fix all type checking errors
+- [X] T048 Run `black .` to format all Python files consistently
+- [X] T049 Run `uv run pytest --cov=src/tasks_cli --cov-report=term-missing` and verify ≥80% coverage (or implement additional tests if below threshold)
+- [X] T050 Manual testing: Follow quickstart.md scenarios end-to-end on Windows, macOS, or Linux
+- [X] T051 Verify all constitution principles: code quality (linting passing), testing (coverage ≥80%), UX (error messages clear), performance (<100ms add, <200ms list), documentation (README complete)
 
 ---
 
