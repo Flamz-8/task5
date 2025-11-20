@@ -1,31 +1,37 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version: 1.0.0 (Initial Constitution)
+Version: 1.1.0 (Added User Documentation Principle)
+Previous Version: 1.0.0
 Constitution Created: 2025-11-19
+Last Amended: 2025-11-19
 
 Principles Defined:
   - Code Quality First (P1)
   - Comprehensive Testing Standards (P2)
   - User Experience Consistency (P3)
   - Performance Requirements (P4)
+  - User Documentation (P5) ⭐ NEW
+  - Use Emojis in Output (P6)
 
-Sections Added:
-  - Core Principles (4 principles)
-  - Quality Gates
-  - Implementation Standards
-  - Governance
+Modified Sections:
+  - Core Principles (6 principles - added User Documentation)
+  - Quality Gates (updated gate #6 to include user documentation)
+
+Version Bump Rationale:
+  - MINOR bump (1.0.0 → 1.1.0): New principle added (User Documentation)
+  - Materially expands governance without breaking existing practices
 
 Templates Requiring Updates:
-  ✅ plan-template.md - Constitution Check section aligns with new principles
-  ✅ spec-template.md - User scenarios and requirements align with testing standards
-  ✅ tasks-template.md - Task categorization reflects principle-driven development
+  ✅ plan-template.md - Constitution Check section aligns with all principles
+  ✅ spec-template.md - User scenarios support documentation requirements
+  ✅ tasks-template.md - Task categorization can include documentation tasks
 
 Follow-up TODOs:
   - None - all placeholders filled
 
 Suggested Commit Message:
-  docs: create project constitution v1.0.0 (code quality, testing, UX, performance principles)
+  docs: amend constitution to v1.1.0 (add user documentation principle)
 -->
 
 # SpecKit Constitution
@@ -117,16 +123,44 @@ Applications MUST meet strict performance benchmarks to ensure excellent user ex
 Poor performance drives users away; investing in performance upfront prevents costly optimization
 later.
 
+### V. User Documentation
+
+User-facing documentation MUST be comprehensive, accurate, and maintained alongside code:
+
+- **Documentation Required**: All user-facing features MUST have corresponding documentation
+- **Up-to-Date Requirement**: Documentation MUST be updated in the same PR as code changes
+- **Merge Blocker**: Code CANNOT be merged to master branch if documentation is missing or outdated
+- **Documentation Types**:
+  - **User Guides**: Step-by-step instructions for common tasks and workflows
+  - **API Documentation**: Complete reference for all public APIs with examples
+  - **Release Notes**: Clear description of changes, new features, and breaking changes
+  - **Troubleshooting**: Common issues and their solutions
+- **Quality Standards**:
+  - Clear, concise language appropriate for target audience
+  - Screenshots/diagrams for complex UI flows
+  - Code examples that are tested and runnable
+  - Searchable and well-organized structure
+- **Review Process**: Documentation changes MUST be reviewed alongside code for accuracy and clarity
+
+**Rationale**: Documentation is the primary interface between users and the product. Outdated or
+missing documentation leads to user frustration, support burden, and reduced adoption. Maintaining
+documentation in sync with code ensures users always have accurate information.
+
+### VI. Use Emojis in Output
+
+Add emojis to every output!!
+
 ## Quality Gates
 
 All code changes MUST pass these gates before merging:
 
-1. **Constitution Compliance**: Code review MUST verify adherence to all four core principles
+1. **Constitution Compliance**: Code review MUST verify adherence to all core principles
 2. **Test Gate**: All tests (unit, integration, E2E) MUST pass; coverage MUST meet minimums
 3. **Performance Gate**: Performance benchmarks MUST not regress by >5%
 4. **Accessibility Gate**: Automated accessibility tests MUST pass; manual audit for new UI
 5. **Security Gate**: Security scanning MUST pass with zero high/critical vulnerabilities
-6. **Documentation Gate**: Public APIs and complex logic MUST have updated documentation
+6. **Documentation Gate**: Public APIs and user documentation MUST be updated; user docs MUST be
+   current before merge to master
 
 **Enforcement**: CI/CD pipeline MUST automatically check gates; any failure blocks merge.
 
@@ -186,4 +220,4 @@ For day-to-day development guidance, workflows, and agent instructions, refer to
 - **Templates**: `.specify/templates/*.md` for specification, planning, and task templates
 - **Prompts**: `.github/prompts/speckit.*.prompt.md` for command-specific instructions
 
-**Version**: 1.0.0 | **Ratified**: 2025-11-19 | **Last Amended**: 2025-11-19
+**Version**: 1.1.0 | **Ratified**: 2025-11-19 | **Last Amended**: 2025-11-19
