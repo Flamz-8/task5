@@ -35,7 +35,7 @@ Users need to view all their stored tasks to review what needs to be done.
 
 1. **Given** three tasks exist in storage, **When** user runs `list`, **Then** all three tasks are displayed with their IDs and descriptions
 2. **Given** no tasks exist in storage, **When** user runs `list`, **Then** system displays "No tasks found"
-3. **Given** tasks exist with timestamps, **When** user runs `list`, **Then** tasks are displayed in chronological order (oldest first)
+3. **Given** tasks exist with different descriptions, **When** user runs `list`, **Then** tasks are displayed in alphabetical order by description
 
 ---
 
@@ -61,7 +61,7 @@ Users need to view all their stored tasks to review what needs to be done.
 - **FR-008**: System MUST validate that task descriptions are not empty
 - **FR-009**: System MUST create storage file automatically if it doesn't exist
 - **FR-010**: System MUST handle errors gracefully with user-friendly messages
-- **FR-011**: System MUST display tasks in chronological order (oldest to newest)
+- **FR-011**: System MUST display tasks in alphabetical order by description
 - **FR-012**: System MUST preserve task data across application restarts
 
 ### Key Entities *(include if feature involves data)*
